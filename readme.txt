@@ -1,5 +1,7 @@
 Bohan Chen 
-Oct 2 2017
+Oct 3 2017
+
+Inspired by Piet Mondrian
 
 SoundTracks:
 Guitar on Fire by Alex Fox
