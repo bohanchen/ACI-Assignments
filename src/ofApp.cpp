@@ -73,24 +73,24 @@ void ofApp::update(){
         squares[i].scale.y = ofRandom(0.5)+(fftSmooth[i]*5);
     }
     
-   
+    if(squares.size() > 1000){
+        squares.erase(squares.begin(), squares.begin()+(squares.size()-10));
+    }
     
+   
+    vector<Squares> s2;
     
     for (int i = 0; i<squares2.size(); ++i) {
         squares2[i].scale.x = ofRandom(0.5+(fftSmooth[i]*5));
         squares2[i].scale.y = ofRandom(0.5+(fftSmooth[i]*5));
         squares2[i].update();
+        
+         if(squares2[i].position.length() < 1000) {
+               s2.push_back(squares2[i]);
+        }
     }
     
-//    vector<Squares> s2;
-//    for (int i = 0; i < squares2.size(); ++i) {
-//        squares2[i].update();
-//        if(squares2[i].position.length() < 1000) {
-//            s2.push_back(squares[i]);
-//        }
-//    }
-//    
-//    squares2 = s2;
+    squares2 = s2;
 }
 
 //--------------------------------------------------------------
@@ -306,12 +306,18 @@ void ofApp::keyPressed(int key){
 
     switch (key) {
             
-        case 'n':
-            ofNoFill();
-            break;
+        case 'r':
+            Alex.stop();
+            Unity.stop();
+            squares.clear();
+            //squares2.clear();
             
         case 'f':
             ofFill();
+            break;
+            
+        case 'n':
+            ofNoFill();
             break;
             
         case 'p':
@@ -323,6 +329,9 @@ void ofApp::keyPressed(int key){
             Alex.stop();
             Unity.play();
             break;
+            
+       
+            
        
     }
 }
